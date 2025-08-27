@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СКР БАРАХОЛКА</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script> <!-- Для интеграции с Telegram Mini App -->
+</head>
+<body class="dark-theme"> <!-- По умолчанию тёмная тема -->
+    <header>
+        <div class="logo">
+            <span class="skr bounce">СКР</span> <span class="baraholka">БАРАХОЛКА</span>
+        </div>
+        <div class="header-controls">
+            <button id="theme-toggle" class="rounded-btn">Сменить тему</button>
+            <select id="language-select" class="rounded-select">
+                <option value="ru">Русский</option>
+                <option value="uk">Українська</option>
+            </select>
+            <button id="admin-btn" class="rounded-btn">Админ панель</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Главная страница -->
+        <section id="main-page" class="page active">
+            <h1>Добро пожаловать в СКР БАРАХОЛКА</h1>
+            <div class="search-filters">
+                <input type="text" id="search-input" placeholder="Поиск по ключевым словам..." class="rounded-input">
+                <select id="city-select" class="rounded-select">
+                    <option value="">Все города</option>
+                    <option value="kyiv">Киев</option>
+                    <option value="lviv">Львов</option>
+                    <!-- Добавьте больше городов по необходимости -->
+                </select>
+                <input type="number" id="price-min" placeholder="Мин. цена (грн)" class="rounded-input">
+                <input type="number" id="price-max" placeholder="Макс. цена (грн)" class="rounded-input">
+                <button id="apply-filters" class="rounded-btn">Применить</button>
+            </div>
+            <div id="listings" class="listings-grid">
+                <!-- Здесь будут рендериться объявления -->
+            </div>
+            <button id="add-listing-btn" class="rounded-btn">Добавить объявление</button>
+        </section>
+
+        <!-- Страница категорий -->
+        <section id="categories-page" class="page">
+            <h1>Категории</h1>
+            <div class="categories-list">
+                <button class="category-btn rounded-btn" data-category="electronics">Электроника</button>
+                <button class="category-btn rounded-btn" data-category="jewelry">Украшения</button>
+                <button class="category-btn rounded-btn" data-category="clothing">Одежда</button>
+                <button class="category-btn rounded-btn" data-category="vapes">Поды/Вейпы</button>
+                <!-- Добавьте больше категорий -->
+            </div>
+            <div id="category-listings" class="listings-grid">
+                <!-- Объявления по категории -->
+            </div>
+        </section>
+
+        <!-- Админ панель -->
+        <section id="admin-panel" class="page">
+            <h1>Админ панель</h1>
+            <input type="password" id="admin-password" placeholder="Пароль" class="rounded-input">
+            <button id="admin-login" class="rounded-btn">Войти</button>
+            <div id="pending-listings" class="listings-grid" style="display: none;">
+                <!-- Ожидающие объявления -->
+            </div>
+        </section>
+
+        <!-- Модальное окно для просмотра объявления -->
+        <div id="listing-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modal-images" class="images-carousel"></div>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <p id="modal-price"></p>
+                <p id="modal-city" class="green-text"></p>
+                <button id="contact-seller" class="rounded-btn">Написать продавцу</button>
+            </div>
+        </div>
+
+        <!-- Форма добавления объявления -->
+        <div id="add-listing-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Добавить объявление</h2>
+                <input type="text" id="new-title" placeholder="Название" class="rounded-input">
+                <select id="new-category" class="rounded-select">
+                    <option value="electronics">Электроника</option>
+                    <option value="jewelry">Украшения</option>
+                    <option value="clothing">Одежда</option>
+                    <option value="vapes">Поды/Вейпы</option>
+                </select>
+                <input type="number" id="new-price" placeholder="Цена (грн)" class="rounded-input">
+                <textarea id="new-description" placeholder="Описание" class="rounded-textarea"></textarea>
+                <input type="text" id="new-city" placeholder="Город" class="rounded-input">
+                <input type="file" id="new-images" multiple accept="image/*">
+                <button id="submit-listing" class="rounded-btn">Отправить на рассмотрение</button>
+            </div>
+        </div>
+    </main>
+
+    <nav>
+        <button id="home-btn" class="nav-btn active">Главная</button>
+        <button id="categories-btn" class="nav-btn">Категории</button>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
